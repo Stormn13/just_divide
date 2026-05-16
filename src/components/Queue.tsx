@@ -4,18 +4,23 @@ import type { TileData } from "../game/type"
 
 type QueueProps = {
 	queue: [TileData, TileData]
+	activeId: string | null
 }
 
-export default function Queue({ queue }: QueueProps){
+export default function Queue({
+	queue,
+	activeId
+}: QueueProps){
 
 	const {
 		setNodeRef,
 		listeners,
-		attributes,
-		transform
+		attributes
 	} = useDraggable({
 		id: queue[0].id
 	});
+
+	const isDragging = activeId === queue[0].id;
 
 	return(
 		<div className="queue-slot">
@@ -25,10 +30,8 @@ export default function Queue({ queue }: QueueProps){
 				{...listeners}
 				{...attributes}
 				style={{
-					transform: transform
-						? `translate3d(${transform.x}px, ${transform.y}px, 0)`
-						: undefined
-				}}
+	visibility: isDragging ? "hidden" : "visible"
+}}
 			>
 				<Tile value={queue[0].value}/>
 			</div>

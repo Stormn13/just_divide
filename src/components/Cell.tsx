@@ -6,17 +6,23 @@ type CellProp = {
 	cell: TileData
 }
 
-export default function Cells({cell}:CellProp){
+export default function Cells({ cell }: CellProp){
+
 	const { setNodeRef } = useDroppable({
-	id: cell.id
-})
-	if (!cell) {
-	return <div className="cell" ref={setNodeRef}></div>
-}
+		id: cell.id
+	});
 
 	return(
-	<div className="cell">
-		<Tile value={cell.value}/>
-	</div>
+		<div
+			className="cell"
+			ref={setNodeRef}
+		>
+
+			{
+				cell.value !== 0 &&
+				<Tile value={cell.value}/>
+			}
+
+		</div>
 	)
 }
