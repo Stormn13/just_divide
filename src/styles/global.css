@@ -1,0 +1,30 @@
+﻿.app {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.heading {
+  text-align:center;
+
+}
+
+.timer {
+  text-align: center;
+}
+
+
+.grid{
+  display: grid;
+}
+
+.tile{
+  position: relative;
+}
+
+.tile_text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
