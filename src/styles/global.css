@@ -17,48 +17,59 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 2rem;
+	gap: 5rem;
 }
 /* all that goes in a grid*/
-.grid{
- display: grid;
+.grid {
+	display: grid;
 
 	grid-template-columns: repeat(4, 1fr);
 
-	gap: 0.8rem;
+	gap: 0.6rem;
 
-	padding: 1rem;
+	padding: 0.6rem;
 
 	width: min(90vw, 500px);
 
 	background: #0b8ea0;
 
-	border-radius: 1.5rem;
-
 	border: 6px solid #b9f3f6;
 
-  margin-top: 2rem;
-  box-shadow:
-	0 10px 30px rgba(0,0,0,0.15);
+	border-radius: 1.5rem;
+
+	box-shadow:
+		0 10px 30px rgba(0,0,0,0.15);
+
+	margin-top: 2rem;
 }
 
-.tile{
+.grid > * {
 	aspect-ratio: 1;
 
 	background: #0a8b9e;
 
+	border: 5px solid #bffcff;
+
 	border-radius: 0.8rem;
 
-	border: 4px solid #bffcff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
 	box-shadow:
 		inset 0 0 10px rgba(255,255,255,0.15),
 		0 4px 8px rgba(0,0,0,0.2);
+}
+
+.tile {
+	width: 88%;
+	height: 88%;
+
+	position: relative;
 
 	display: flex;
-	justify-content: center;
 	align-items: center;
-  position: relative;
+	justify-content: center;
 }
 
 .tile_text{
@@ -75,20 +86,36 @@
 
 /* right side elements */
 
+
 .right-slot {
-	width: 180px;
-	height: 500px;
+	width: 130px;
+	height: 470px;
 
 	display: flex;
 	flex-direction: column;
-
 	align-items: center;
 	justify-content: space-between;
 
-	padding: 16px 0;
+	padding: 1.5rem 0;
+  margin-top: 2rem;
+	background: linear-gradient(
+	180deg,
+	#ffd45f 0%,
+	#ffbf3f 100%
+	);
 
-	background: orange;
+	border-radius: 3rem;
+
+	border: 6px solid #d38b2b;
+
+	box-shadow:
+		inset 0 0 0 4px #f7c35b,
+		inset 0 8px 12px rgba(255,255,255,0.35),
+		0 10px 25px rgba(0,0,0,0.18);
+
+	position: relative;
 }
+
 
 .keep-slot,
 .trash-slot {
@@ -114,10 +141,40 @@
 }
 
 .queue-slot {
-	width: 70px;
-	height: 70px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-	background: white;
+	gap: 0.4rem;
 
-	border-radius: 16px;
+	padding: 0.4rem;
+
+	background: #0b8ea0;
+
+	border: 5px solid #b9f3f6;
+
+	border-radius: 1rem;
+
+	box-shadow:
+		0 6px 16px rgba(0,0,0,0.15);
+}
+
+.queue-slot > * {
+	aspect-ratio: 1;
+
+	width: 48%;
+
+	background: #0a8b9e;
+
+	border: 4px solid #bffcff;
+
+	border-radius: 0.8rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	box-shadow:
+		inset 0 0 10px rgba(255,255,255,0.15),
+		0 4px 8px rgba(0,0,0,0.2);
 }
