@@ -3,7 +3,7 @@ import Tile from "./Tile";
 
 
 export default function Grid(){
-	const [tiles, setTiles] = useState(Array(16).fill(null))
+	const [tiles, setTiles] = useState(Array(16).fill(4))
 
 	return(
 		<div className="grid">

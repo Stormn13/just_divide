@@ -11,7 +11,7 @@ type Tileprops = {
 
 export default function Tile({value}: Tileprops){
 
-	if (value = 2){
+	if (value == 2){
 		return(
 		<div className="tile">
 		<img src={blueTile} />
@@ -19,11 +19,13 @@ export default function Tile({value}: Tileprops){
 		</div>
 	)
 	}
-	if (value = 4){
+	if (value == 4){
+		return(
 		<div className="tile">
 		<img src={pinkTile} />
 		<p className="tile_text"> {value} </p>
 		</div>
+		)
 	}
 	
 }
