@@ -1,5 +1,5 @@
 import blueTile from "../assets/blue.png"
-import redTile from "../assets/red.png"
+
 import orangeTile from "../assets/orange.png"
 import purpleTile from "../assets/purpule.png"
 import pinkTile from "../assets/pink.png"
