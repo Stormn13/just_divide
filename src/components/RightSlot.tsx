@@ -4,7 +4,7 @@ import KeepSlot from "./KeepSlot"
 import type { TileData } from "../game/type"
 
 type RightSlotProps = {
-    queue: TileData[]
+    queue: [TileData, TileData]
     keep: TileData
 }
 

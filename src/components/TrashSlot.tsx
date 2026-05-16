@@ -1,5 +1,17 @@
+import { useDroppable } from "@dnd-kit/core";
+
 export default function TrashSlot(){
-    return(
-        <div className="trash-slot"></div>
-    )
+
+	const { setNodeRef } = useDroppable({
+		id: "trash-slot"
+	});
+
+	return(
+		<div
+			ref={setNodeRef}
+			className="trash-slot"
+		>
+			
+		</div>
+	)
 }

@@ -6,13 +6,17 @@ import pinkTile from "../assets/pink.png"
 
 
 type Tileprops = {
-	value: number | null
+	value: number
 }
 
 export default function Tile({value}: Tileprops){
 	
 	let image
-
+	if (value === 0){
+		return(
+			<div></div>
+		)
+	}
 	if (value === 2) {
 		image = blueTile
 	}
