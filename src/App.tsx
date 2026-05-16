@@ -2,6 +2,8 @@ import Grid from "./components/Grid"
 import RightSlot from "./components/RightSlot"
 import "./styles/global.css"
 import { closestCorners, DndContext } from "@dnd-kit/core"
+import type { TileData } from "./game/type"
+
 export default function App() {
 	return (
 		<div className="app">

@@ -5,12 +5,13 @@ import type { TileData } from "../game/type"
 
 type RightSlotProps = {
     queue: TileData[]
+    keep: TileData
 }
 
-export default function RightSlot({queue}:RightSlotProps){
+export default function RightSlot({queue, keep}:RightSlotProps){
     return(
         <div className="right-slot">
-            <KeepSlot />
+            <KeepSlot keep={keep}/>
             <Queue queue={queue} />
             <TrashSlot />
         </div>
