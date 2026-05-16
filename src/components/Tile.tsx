@@ -6,19 +6,24 @@ import pinkTile from "../assets/pink.png"
 
 
 type Tileprops = {
-	value: number
+	value: number | null
 }
 
 export default function Tile({value}: Tileprops){
 
 	if (value = 2){
 		return(
-		<div>
+		<div className="tile">
 		<img src={blueTile} />
 		<p className="tile_text"> {value} </p>
 		</div>
 	)
 	}
-	if (value = 4)
+	if (value = 4){
+		<div className="tile">
+		<img src={pinkTile} />
+		<p className="tile_text"> {value} </p>
+		</div>
+	}
 	
 }

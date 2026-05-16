@@ -1,17 +1,14 @@
-import Cell from "./Cell"
+import { useState } from "react";
+import Tile from "./Tile";
 
-type GridProps = {
-	grid: (number | null)[][]
-}
 
-export default function Grid({ grid }: GridProps) {
-	return (
+export default function Grid(){
+	const [tiles, setTiles] = useState(Array(16).fill(null))
+
+	return(
 		<div className="grid">
-			{grid.flat().map((value, index) => (
-				<Cell
-					key={index}
-					value={value}
-				/>
+			{tiles.map((tile, index) => (
+				<Tile key = {index} value={tile}/>
 			))}
 		</div>
 	)

@@ -13,12 +13,36 @@
   text-align: center;
 }
 
+.game_area{
+  display: flex;
+  justify-content: center;
+}
 
 .grid{
   display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: min(90vw, 90vh);
+
+  margin: auto;
+  margin-top: 2rem;
 }
 
 .tile{
+	aspect-ratio: 1;
+
+	background-color: royalblue;
+
+	border-radius: 1rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 2rem;
+	font-weight: bold;
+	color: white;
   position: relative;
 }
 
