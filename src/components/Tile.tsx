@@ -10,22 +10,26 @@ type Tileprops = {
 }
 
 export default function Tile({value}: Tileprops){
+	
+	let image
 
-	if (value == 2){
-		return(
-		<div className="tile">
-		<img src={blueTile} />
+	if (value === 2) {
+		image = blueTile
+	}
+	else if (value === 4) {
+		image = orangeTile
+	}
+	else if (value === 8) {
+		image = purpleTile
+	}
+	else {
+		image = pinkTile
+	}
+	return(
+		<div className="tile" >
+		<img src={image} />
 		<p className="tile_text"> {value} </p>
 		</div>
 	)
-	}
-	if (value == 4){
-		return(
-		<div className="tile">
-		<img src={pinkTile} />
-		<p className="tile_text"> {value} </p>
-		</div>
-		)
-	}
 	
 }

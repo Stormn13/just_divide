@@ -1,16 +1,19 @@
 import Grid from "./components/Grid"
 import RightSlot from "./components/RightSlot"
 import "./styles/global.css"
+import { closestCorners, DndContext } from "@dnd-kit/core"
 export default function App() {
 	return (
 		<div className="app">
 				<h1 className="heading">JUST DIVIDE</h1>
         <span className="timer">0:07</span>
         <span className="heading"> Divide the numbers to solve rows and columns</span>
+        <DndContext collisionDetection={closestCorners}>
         <div className = "game_area">
           <Grid />
           <RightSlot />
         </div>
+        </DndContext>
 		</div>
 	)
 }
