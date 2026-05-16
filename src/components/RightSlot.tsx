@@ -19,12 +19,14 @@ export default function RightSlot({
 	return(
 		<div className="right-slot">
 
+            <KeepSlot keep={keep} />
+
 			<Queue
 				queue={queue}
 				activeId={activeId}
 			/>
 
-			<KeepSlot keep={keep} />
+			
 
 			<TrashSlot />
 
