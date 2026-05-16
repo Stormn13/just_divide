@@ -13,9 +13,11 @@
   text-align: center;
 }
 
-.game_area{
-  display: flex;
-  justify-content: center;
+.game_area {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
 }
 /* all that goes in a grid*/
 .grid{
@@ -35,8 +37,7 @@
 
 	border: 6px solid #b9f3f6;
 
-	margin: auto;
-	margin-top: 2rem;
+  margin-top: 2rem;
   box-shadow:
 	0 10px 30px rgba(0,0,0,0.15);
 }
@@ -74,7 +75,49 @@
 
 /* right side elements */
 
-.right_slot{
-  display: flex;
-  flex-direction: column;
+.right-slot {
+	width: 180px;
+	height: 500px;
+
+	display: flex;
+	flex-direction: column;
+
+	align-items: center;
+	justify-content: space-between;
+
+	padding: 16px 0;
+
+	background: orange;
+}
+
+.keep-slot,
+.trash-slot {
+	width: 90px;
+	height: 90px;
+
+	border-radius: 20px;
+
+	border: 4px solid white;
+}
+
+.keep-slot {
+	background: #42d392;
+}
+
+.trash-slot {
+	background: #ff5c5c;
+}
+
+.queue {
+	display: flex;
+	gap: 12px;
+}
+
+.queue-slot {
+	width: 70px;
+	height: 70px;
+
+	background: white;
+
+	border-radius: 16px;
 }

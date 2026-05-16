@@ -1,4 +1,5 @@
 import Grid from "./components/Grid"
+import RightSlot from "./components/RightSlot"
 import "./styles/global.css"
 export default function App() {
 	return (
@@ -7,7 +8,8 @@ export default function App() {
         <span className="timer">0:07</span>
         <span className="heading"> Divide the numbers to solve rows and columns</span>
         <div className = "game_area">
-           <Grid /> 
+          <Grid />
+          <RightSlot />
         </div>
 		</div>
 	)

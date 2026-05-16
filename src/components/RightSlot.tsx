@@ -3,9 +3,9 @@ import TrashSlot from "./TrashSlot"
 import KeepSlot from "./KeepSlot"
 
 
-export default function right_slot(){
+export default function RightSlot(){
     return(
-        <div className="right_slot" >
+        <div className="right-slot">
             <KeepSlot />
             <Queue />
             <TrashSlot />

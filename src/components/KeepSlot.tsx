@@ -1,5 +1,7 @@
+
+
 export default function KeepSlot(){
     return(
-        <div ></div>
+        <div className="keep-slot"></div>
     )
 }

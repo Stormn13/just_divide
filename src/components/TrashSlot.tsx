@@ -1,5 +1,5 @@
 export default function TrashSlot(){
     return(
-        <div ></div>
+        <div className="trash-slot"></div>
     )
 }
