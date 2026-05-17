@@ -1,4 +1,10 @@
-﻿.app {
+﻿body{
+	background-image: url(..\assets\Landscape_JustDivide_Game_2.png);
+	background-size: cover;
+}
+
+
+.app{
   display: flex;
   flex-direction: column;
 

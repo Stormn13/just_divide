@@ -8,14 +8,17 @@ Live Demo: https://just-divide-dm3y.vercel.app/
 
 # Overview
 
-JUST DIVIDE is a grid-based puzzle game where the player drags numbered tiles from a queue onto a 4x4 board.
+JUST DIVIDE is a grid-based educational puzzle game inspired by arithmetic reduction mechanics.
+
+Players drag numbered tiles from a queue onto a 4x4 board. When tiles touch neighboring tiles, they may disappear or divide according to mathematical rules.
 
 The game combines:
 
 * spatial puzzle solving
 * queue management
-* merge/division mechanics
-* limited inventory control
+* factor/division logic
+* strategic placement
+* inventory management
 
 The project is currently in active development.
 
@@ -25,23 +28,30 @@ The project is currently in active development.
 
 ## Core Architecture
 
+Implemented:
+
 * React + TypeScript project structure
 * Centralized game state in `App.tsx`
 * Prop-driven component architecture
 * Modular component system
+* Separated gameplay utility functions
+* Reusable game logic modules
 
 ---
 
-## Board System
+# Board System
+
+Implemented:
 
 * 4x4 game board
 * Dynamic board rendering
 * Individual droppable cells using dnd-kit
 * Empty/filled cell handling
+* Placement restrictions for occupied cells
 
 ---
 
-## Drag and Drop
+# Drag and Drop
 
 Implemented using:
 
@@ -56,27 +66,77 @@ Current functionality:
 * Drop onto board
 * Drop into keep slot
 * Drop into trash slot
+* Overlay rendering during drag
+* Drag state management
 
 ---
 
-## Queue System
+# Queue System
 
 Implemented:
 
-* 2-tile queue
+* Upcoming tile queue
 * First tile draggable
 * Queue advancement
-* Dynamic tile generation
+* Dynamic random tile generation
+* Queue swapping through KEEP slot
 
 Current queue behavior:
 
 * placing tile advances queue
 * trashing tile advances queue
 * keeping tile stores tile
+* swapping retrieves stored tile
 
 ---
 
-## Keep Slot
+# Merge / Division System
+
+Implemented:
+
+* Neighbor checking
+* Equality removal logic
+* Division merge logic
+* Quotient replacement logic
+* Result-of-1 removal logic
+
+Current rules:
+
+### Equal tiles disappear
+
+```txt
+4 next to 4
+→ both removed
+```
+
+### Divisible tiles merge
+
+```txt
+12 next to 3
+→ 4
+```
+
+```txt
+15 next to 5
+→ 3
+```
+
+```txt
+9 next to 3
+→ 3
+```
+
+### Result of 1 disappears
+
+```txt
+2 next to 2
+→ 1
+→ removed
+```
+
+---
+
+# Keep Slot
 
 Implemented:
 
@@ -86,7 +146,7 @@ Implemented:
 
 ---
 
-## Trash Slot
+# Trash Slot
 
 Implemented:
 
@@ -95,7 +155,29 @@ Implemented:
 
 ---
 
-## Tile Rendering
+# Tile Generation
+
+Implemented:
+
+* centralized tile generation function
+* random tile spawning
+* reusable generation architecture
+
+Current tile pool:
+
+* 2
+* 4
+* 8
+
+Architecture supports future:
+
+* weighted randomness
+* difficulty scaling
+* rare tiles
+
+---
+
+# Tile Rendering
 
 Implemented:
 
@@ -103,17 +185,11 @@ Implemented:
 * value-based tile visuals
 * overlay drag rendering
 * scalable tile component
-
-Current tile types:
-
-* 2
-* 4
-* 8
-* higher fallback tile
+* reusable tile architecture
 
 ---
 
-## UI
+# UI
 
 Implemented:
 
@@ -121,12 +197,15 @@ Implemented:
 * responsive board structure
 * custom tile visuals
 * right-side utility panel
+* drag overlay visuals
+* scalable tile rendering
 
 Still being refined:
 
-* queue positioning
-* spacing consistency
-* visual polish
+* queue alignment cleanup
+* responsive scaling polish
+* animation polish
+* final spacing consistency
 
 ---
 
@@ -145,7 +224,9 @@ src/
 │   └── TrashSlot.tsx
 │
 ├── game/
-│   └── type.ts
+│   ├── type.ts
+│   ├── generateTile.ts
+│   └── resolveNeighbors.ts
 │
 ├── assets/
 │   └── tile sprites
@@ -158,9 +239,9 @@ src/
 
 # Current Development Progress
 
-## COMPLETED
+# COMPLETED
 
-### Core Systems
+## Core Systems
 
 * [x] React architecture
 * [x] Game state ownership
@@ -171,13 +252,21 @@ src/
 * [x] Board placement
 * [x] Drag overlays
 * [x] Tile rendering
+* [x] Dynamic tile generation
+* [x] Neighbor merge resolution
+* [x] Division logic
+* [x] Equality removal logic
 
-### UI Foundation
+---
+
+## UI Foundation
 
 * [x] Main board layout
 * [x] Right utility panel
 * [x] Tile assets
 * [x] Cell visuals
+* [x] Background implementation
+* [x] Responsive layout foundation
 
 ---
 
@@ -186,26 +275,15 @@ src/
 ## UI Polish
 
 * [ ] queue alignment cleanup
-* [ ] final spacing adjustments
-* [ ] responsive scaling
+* [ ] spacing consistency
+* [ ] responsive fine-tuning
 * [ ] animation polish
 
 ---
 
 # TODO
 
-## Gameplay Logic
-
-### Merge System
-
-Planned:
-
-* adjacent tile checking
-* division rules
-* merge resolution
-* chain reactions
-
----
+## Gameplay Systems
 
 ### Score System
 
@@ -214,6 +292,7 @@ Planned:
 * score tracking
 * combo scoring
 * multiplier logic
+* merge rewards
 
 ---
 
@@ -227,13 +306,23 @@ Planned:
 
 ---
 
-### Tile Generation
+### Tile Generation Improvements
 
 Planned:
 
-* weighted randomness
-* difficulty scaling
-* progression balancing
+* weighted probabilities
+* level scaling
+* difficulty progression
+
+---
+
+### Advanced Merge Logic
+
+Planned:
+
+* chain reactions
+* merge prioritization
+* recursive resolution
 
 ---
 
@@ -241,10 +330,20 @@ Planned:
 
 Planned:
 
-* win state
-* lose state
+* game over detection
 * restart logic
 * pause system
+* win conditions
+
+---
+
+### Undo / Hint System
+
+Planned:
+
+* undo stack
+* hint highlighting
+* valid move visualization
 
 ---
 
@@ -255,7 +354,8 @@ Planned:
 * sound effects
 * merge feedback
 * drag feedback
-* animations
+* particle effects
+* transitions
 
 ---
 
@@ -267,9 +367,10 @@ The project uses:
 * hooks-based state management
 * centralized game loop architecture
 * prop-driven rendering
+* modular gameplay logic
 * dnd-kit for interactions
 
-The current architecture is designed so future gameplay systems can be added without major rewrites.
+The architecture is designed so future gameplay systems can be added without major rewrites.
 
 ---
 
@@ -280,10 +381,26 @@ The biggest development challenge has been integrating:
 * drag-and-drop overlays
 * queue rendering
 * responsive layout behavior
+* merge simulation
+* gameplay state flow
 
-while keeping the UI visually stable.
+while keeping the UI visually stable and the logic modular.
 
-Most core gameplay architecture is now functioning correctly.
+---
+
+# Current State of the Project
+
+The project has now moved beyond a UI prototype and into a functional gameplay prototype.
+
+Core interaction systems and primary merge mechanics are operational.
+
+The remaining work is primarily:
+
+* polish
+* balancing
+* progression systems
+* feedback systems
+* UX refinement
 
 ---
 
@@ -291,15 +408,17 @@ Most core gameplay architecture is now functioning correctly.
 
 The next major step is implementing:
 
-* merge logic
-* division mechanics
-* row/column solving rules
+* scoring
+* chain reactions
+* game-over detection
+* undo/hint systems
+* animations and polish
 
 This will transition the project from:
 
-* UI prototype
+* functional prototype
   to
-* actual playable game.
+* complete playable experience.
 
 ---
 
@@ -314,3 +433,4 @@ Built as a learning/project-based exploration of:
 * game architecture
 * drag-and-drop systems
 * puzzle game design
+* educational game mechanics

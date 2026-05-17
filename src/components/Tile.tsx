@@ -1,5 +1,5 @@
 import blueTile from "../assets/blue.png"
-
+import redFile from "../assets/red.png"
 import orangeTile from "../assets/orange.png"
 import purpleTile from "../assets/purpule.png"
 import pinkTile from "../assets/pink.png"
@@ -26,8 +26,11 @@ export default function Tile({value}: Tileprops){
 	else if (value === 8) {
 		image = purpleTile
 	}
-	else {
+	else if (value=== 16){
 		image = pinkTile
+	}
+	else if (value == 32){
+		image = redFile
 	}
 	return(
 		<div className="tile" >

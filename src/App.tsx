@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { generateTile } from "./game/generateTile";
+import { resolveNeighbors } from "./game/resolveNeighbors";
 import {
 	DndContext,
 	DragOverlay,
@@ -41,27 +42,42 @@ export default function App(){
 		setActiveId(event.active.id.toString());
 	}
 
-	function handleDragEnd(event: DragEndEvent){
+function handleDragEnd(event: DragEndEvent){
 
 	setActiveId(null);
+
 	const targetId = event.over?.id;
-	if(!targetId) return;
+
+	if(!targetId){
+		return;
+	}
+
 	const activeTile = queue[0];
 
+	/* =========================
+	   KEEP SLOT
+	========================= */
+
 	if(targetId === "keep-slot"){
+
+		/* empty keep */
+
 		if(keep.value === 0){
+
 			setKeep(activeTile);
+
 			setQueue([
 				queue[1],
-				{
-					id: crypto.randomUUID(),
-					value: 4
-				}
+				generateTile()
 			]);
+
 			return;
 		}
-		// swap
+
+		/* swap keep */
+
 		setKeep(activeTile);
+
 		setQueue([
 			keep,
 			queue[1]
@@ -70,40 +86,60 @@ export default function App(){
 		return;
 	}
 
+	/* =========================
+	   TRASH SLOT
+	========================= */
+
 	if(targetId === "trash-slot"){
 
 		setQueue([
 			queue[1],
-			{
-				id: crypto.randomUUID(),
-				value: 4
-			}
+			generateTile()
 		]);
 
 		return;
 	}
 
-	const targetCell = grid.find(
+	/* =========================
+	   BOARD PLACEMENT
+	========================= */
+
+	const targetIndex = grid.findIndex(
 		(cell) => cell.id === targetId
 	);
 
-	if(!targetCell) return;
-	if(targetCell.value !== 0) return;
-	const newGrid = grid.map((cell) => {
-		if(cell.id === targetId){
-			return {
-				...cell,
-				value: activeTile.value
-			};
-		}
-		return cell;
-	});
-	setGrid(newGrid);
+	if(targetIndex === -1){
+		return;
+	}
+
+	/* prevent placing on occupied cells */
+
+	if(grid[targetIndex].value !== 0){
+		return;
+	}
+
+	/* place tile */
+
+	const newGrid = [...grid];
+
+	newGrid[targetIndex] = activeTile;
+
+	/* resolve merges */
+
+	const resolvedGrid = resolveNeighbors(
+		newGrid,
+		targetIndex
+	);
+
+	setGrid(resolvedGrid);
+
+	/* advance queue */
+
 	setQueue([
 		queue[1],
 		generateTile()
 	]);
-} 
+}
 
 	return (
 		<div className="app">
