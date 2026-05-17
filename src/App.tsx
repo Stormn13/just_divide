@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { generateTile } from "./game/generateTile";
 import {
 	DndContext,
 	DragOverlay,
@@ -16,10 +16,6 @@ import type { TileData } from "./game/type";
 
 export default function App(){
 
-	// =========================
-	// INITIAL STATE
-	// =========================
-
 	const initialGrid: TileData[] = Array.from(
 		{ length: 16 },
 		(_, index) => ({
@@ -27,68 +23,34 @@ export default function App(){
 			value: 0
 		})
 	);
-
 	const initialQueue: [TileData, TileData] = [
-		{
-			id: crypto.randomUUID(),
-			value: 4
-		},
-		{
-			id: crypto.randomUUID(),
-			value: 12
-		}
+		generateTile(),
+		generateTile()
 	];
-
 	const initialKeep: TileData = {
 		id: "keep",
 		value: 0
 	};
 
-	// =========================
-	// GAME STATE
-	// =========================
-
 	const [grid, setGrid] = useState(initialGrid);
-
 	const [queue, setQueue] = useState(initialQueue);
-
 	const [keep, setKeep] = useState(initialKeep);
-
 	const [activeId, setActiveId] = useState<string | null>(null);
-
-	// =========================
-	// DRAG START
-	// =========================
 
 	function handleDragStart(event: DragStartEvent){
 		setActiveId(event.active.id.toString());
 	}
 
-	// =========================
-	// DRAG END
-	// =========================
-
 	function handleDragEnd(event: DragEndEvent){
 
 	setActiveId(null);
-
 	const targetId = event.over?.id;
-
 	if(!targetId) return;
-
 	const activeTile = queue[0];
 
-	// =========================
-	// KEEP SLOT
-	// =========================
-
 	if(targetId === "keep-slot"){
-
-		// keep empty
 		if(keep.value === 0){
-
 			setKeep(activeTile);
-
 			setQueue([
 				queue[1],
 				{
@@ -96,13 +58,10 @@ export default function App(){
 					value: 4
 				}
 			]);
-
 			return;
 		}
-
 		// swap
 		setKeep(activeTile);
-
 		setQueue([
 			keep,
 			queue[1]
@@ -110,10 +69,6 @@ export default function App(){
 
 		return;
 	}
-
-	// =========================
-	// TRASH SLOT
-	// =========================
 
 	if(targetId === "trash-slot"){
 
@@ -128,43 +83,27 @@ export default function App(){
 		return;
 	}
 
-	// =========================
-	// BOARD PLACEMENT
-	// =========================
-
 	const targetCell = grid.find(
 		(cell) => cell.id === targetId
 	);
 
 	if(!targetCell) return;
-
 	if(targetCell.value !== 0) return;
-
 	const newGrid = grid.map((cell) => {
-
 		if(cell.id === targetId){
 			return {
 				...cell,
 				value: activeTile.value
 			};
 		}
-
 		return cell;
 	});
-
 	setGrid(newGrid);
-
 	setQueue([
 		queue[1],
-		{
-			id: crypto.randomUUID(),
-			value: 4
-		}
+		generateTile()
 	]);
 } 
-	// =========================
-	// RENDER
-	// =========================
 
 	return (
 		<div className="app">
