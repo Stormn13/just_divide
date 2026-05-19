@@ -54,10 +54,6 @@ function handleDragEnd(event: DragEndEvent){
 
 	const activeTile = queue[0];
 
-	/* =========================
-	   KEEP SLOT
-	========================= */
-
 	if(targetId === "keep-slot"){
 
 		/* empty keep */
@@ -74,8 +70,6 @@ function handleDragEnd(event: DragEndEvent){
 			return;
 		}
 
-		/* swap keep */
-
 		setKeep(activeTile);
 
 		setQueue([
@@ -85,10 +79,6 @@ function handleDragEnd(event: DragEndEvent){
 
 		return;
 	}
-
-	/* =========================
-	   TRASH SLOT
-	========================= */
 
 	if(targetId === "trash-slot"){
 
@@ -100,10 +90,6 @@ function handleDragEnd(event: DragEndEvent){
 		return;
 	}
 
-	/* =========================
-	   BOARD PLACEMENT
-	========================= */
-
 	const targetIndex = grid.findIndex(
 		(cell) => cell.id === targetId
 	);
@@ -112,19 +98,14 @@ function handleDragEnd(event: DragEndEvent){
 		return;
 	}
 
-	/* prevent placing on occupied cells */
 
 	if(grid[targetIndex].value !== 0){
 		return;
 	}
 
-	/* place tile */
-
 	const newGrid = [...grid];
 
 	newGrid[targetIndex] = activeTile;
-
-	/* resolve merges */
 
 	const resolvedGrid = resolveNeighbors(
 		newGrid,
@@ -132,8 +113,6 @@ function handleDragEnd(event: DragEndEvent){
 	);
 
 	setGrid(resolvedGrid);
-
-	/* advance queue */
 
 	setQueue([
 		queue[1],
