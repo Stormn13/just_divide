@@ -37,6 +37,11 @@ export default function App(){
 	const [queue, setQueue] = useState(initialQueue);
 	const [keep, setKeep] = useState(initialKeep);
 	const [activeId, setActiveId] = useState<string | null>(null);
+	const [seconds, setSeconds] = useState(0);
+	const minutes = Math.floor(seconds / 60);
+
+	const remainingSeconds = seconds % 60;
+
 
 	function handleDragStart(event: DragStartEvent){
 		setActiveId(event.active.id.toString());
@@ -128,7 +133,8 @@ function handleDragEnd(event: DragEndEvent){
 			</h1>
 
 			<span className="timer">
-				0:07
+				{minutes}:
+				{remainingSeconds.toString().padStart(2, "0")}
 			</span>
 
 			<span className="heading">
